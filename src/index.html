@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanishing Point</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="files/logo.ico">
+    <script src='math.js'></script>
+    <script src='index.js'></script>
+    <script src='ui.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="side_menu">
+            <div id="app_title" class="no_select">Vanishing Point</div>
+            <div id="file_info">
+                <button id="obj_button" onclick="openFileDialog()">LOAD OBJ</button>
+                <button id="download_button" onclick="saveSVG('Project')">DOWNLOAD SVG</button>
+            </div>
+            <div class="input_grid">
+                <div>zoom:</div>
+                <input id="input_zoom" type="number" step="0.05" min="0" />
+            </div>
+            <div class="input_grid">
+                <div>vp:</div>
+                <input id="input_vp" type="number" step="10" />
+            </div>
+            <div class="input_grid">
+                <div>x:</div>
+                <input id="input_x" type="number" step=".1" />
+            </div>
+        </div>
+        <div id="page" onclick="openFileDialog()">
+            <svg id="canvas" class="empty" viewbox="-300 -300 600 600">
+                <g id="baseSVG" />
+                <g id="objectSVG" />
+            </svg>
+        </div>
+    </div>
+    <div id="hidden">
+        <input type="file" id="input_file" name="OBJ" accept="object/obj, text/txt">
+    </div>
+    <script>
+        document.getElementById('input_file').onchange = readFile
+        // zoom
+        document.getElementById('input_zoom').onchange = zoomChange
+        document.getElementById('input_zoom').value = 1
+        // vanishing point location x
+        document.getElementById('input_vp').onchange = vpxChange
+        document.getElementById('input_vp').value = 0
+        // viewer location x
+        document.getElementById('input_x').onchange = xChange
+        document.getElementById('input_x').value = 0
+    </script>
+</body>
+
+</html>
